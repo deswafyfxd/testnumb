@@ -35,10 +35,11 @@ jobs:
           if [ -f otp_log.txt ]; then
             cat otp_log.txt;
             git config --global user.email "deswafyfxd@outlook.com"
-            git config --global user.name "deswafyfxd"
+            git config --global user.name "deswafyfxd
+"
             git add otp_log.txt
             git commit -m "Update otp_log.txt"
-            git push
+            git push https://$ACTIONS_PAT@github.com/deswafyfxd/testnumb.git
           fi;
           sleep 10;  # Adjust time interval as needed
         done
