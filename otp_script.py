@@ -21,7 +21,7 @@ def get_otp(phone_number):
 
 # Function to log OTPs and display them in real-time
 def log_otp():
-    with open("otp_log.txt", "w") as log_file:  # Create the file at the start
+    with open("otp_log.txt", "w") as log_file:
         while True:
             phone_number = generate_indian_number()
             otp, message = get_otp(phone_number)
@@ -29,7 +29,7 @@ def log_otp():
             print(log_entry)
             log_file.write(log_entry + "\n")
             log_file.flush()  # Ensure it's written to the file immediately
-            time.sleep(5)  # Adjust time interval as needed
+            time.sleep(10)  # Log every 10 seconds
 
 # Start logging OTPs
 log_otp()
