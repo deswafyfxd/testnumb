@@ -22,11 +22,18 @@ jobs:
       with:
         python-version: '3.x'
 
+    - name: Install dependencies
+      run: |
+        pip install twilio
+        # Add any other dependencies your script needs
+
     - name: Run OTP script
       run: |
-        python otp_script.py &  # Run the OTP script in the background
+        python otp_script.py &
         while true; do
-          echo "OTP script is running...";  # Keep the job alive
-          tail -f otp_log.txt &  # Display real-time log of the OTP script
-          sleep 300;  # Adjust the sleep interval as needed
+          echo "OTP script is running...";
+          if [ -f otp_log.txt ]; then
+            cat otp_log.txt;
+          fi;
+          sleep 300;
         done
