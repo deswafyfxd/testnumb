@@ -34,6 +34,11 @@ jobs:
           echo "OTP script is running...";
           if [ -f otp_log.txt ]; then
             cat otp_log.txt;
+            git config --global user.email "you@example.com"
+            git config --global user.name "Your Name"
+            git add otp_log.txt
+            git commit -m "Update otp_log.txt"
+            git push
           fi;
-          sleep 300;
+          sleep 10;  # Adjust time interval as needed
         done
