@@ -24,22 +24,24 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install twilio
-        # Add any other dependencies your script needs
+        # No external dependencies, so this can be skipped for now
+        pip install requests
 
     - name: Run OTP script
       run: |
-        python otp_script.py &
+        python otp_script.py &  # Run the OTP script in the background
         while true; do
           echo "OTP script is running...";
           if [ -f otp_log.txt ]; then
             cat otp_log.txt;
-            git config --global user.email "deswafyfxd@outlook.com"
-            git config --global user.name "deswafyfxd
-"
+            git config --global user.email "your-email@example.com"
+            git config --global user.name "Your Name"
             git add otp_log.txt
             git commit -m "Update otp_log.txt"
-            git push https://$ACTIONS_PAT@github.com/deswafyfxd/testnumb.git
+            git push https://$ACTIONS_PAT@github.com/your-username/your-repo.git
           fi;
           sleep 10;  # Adjust time interval as needed
         done
+
+    env:
+      ACTIONS_PAT: ${{ secrets.ACTIONS_PAT }}
