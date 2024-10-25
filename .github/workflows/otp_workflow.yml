@@ -1,0 +1,33 @@
+name: OTP Generation
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '50 18 * * *'  # Runs the workflow every day at 18:50
+  workflow_dispatch:  # Allows manual trigger of the workflow
+
+jobs:
+  otp-generation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60  # Sets the runtime to 60 minutes
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install twilio
+        # Add any other dependencies your script needs
+
+    - name: Run OTP script
+      run: |
+        python otp_script.py &
+        while true; do echo "OTP script is running..."; sleep 300; done
